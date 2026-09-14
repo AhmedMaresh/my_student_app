@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_student_app/core/helpers/spacing.dart';
+import 'package:my_student_app/core/themes/styles.dart';
 
 class GreetingHeader extends StatelessWidget {
   const GreetingHeader({super.key});
@@ -11,12 +13,9 @@ class GreetingHeader extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Good Evening 👋',
-            style: TextStyle(fontSize: 28.sp, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 6.h),
-          Text('Manage your students', style: TextStyle(fontSize: 16.sp)),
+          Text('Good Evening 👋', style: Styles.font28DarkGreenBold),
+          verticalSpace(6),
+          Text('Manage your students', style: Styles.font16DarkGreenRegular),
         ],
       ),
     );
