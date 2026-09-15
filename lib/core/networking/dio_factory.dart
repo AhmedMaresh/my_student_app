@@ -1,0 +1,40 @@
+import 'package:dio/dio.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+
+class DioFactory {
+  DioFactory._();
+
+  static Dio? dio;
+
+  static Dio getDio() {
+    const timeout = Duration(seconds: 30);
+
+    if (dio == null) {
+      dio = Dio();
+      dio!
+        ..options.connectTimeout = timeout
+        ..options.receiveTimeout = timeout;
+
+      addDioHeaders();
+      addDioInterceptors();
+      return dio!;
+    } else {
+      return dio!;
+    }
+  }
+
+  static void addDioHeaders() {
+    dio?.options.headers = {'Accept': 'application/json'};
+  }
+
+  static void addDioInterceptors() {
+    dio?.interceptors.add(
+      PrettyDioLogger(
+        requestBody: true,
+        requestHeader: true,
+        responseBody: true,
+        responseHeader: true,
+      ),
+    );
+  }
+}
