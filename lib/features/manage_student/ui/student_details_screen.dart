@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_student_app/core/helpers/spacing.dart';
+import 'package:my_student_app/core/themes/colors_manager.dart';
+import 'package:my_student_app/core/themes/styles.dart';
+import 'package:my_student_app/features/manage_student/ui/widgets/student_details_screen/student_details_card.dart';
+import 'package:my_student_app/features/manage_student/ui/widgets/student_details_screen/student_info.dart';
 
 class StudentDetailsScreen extends StatelessWidget {
   final String name;
@@ -12,8 +18,25 @@ class StudentDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Student Details')),
-      body: const Center(child: Text('Student Details Screen')),
+      appBar: AppBar(
+        backgroundColor: ColorsManager.darkGreen,
+        foregroundColor: ColorsManager.beige,
+        elevation: 0,
+        title: Text('Student Details', style: Styles.font20Bold),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(20.w),
+        child: Column(
+          children: [
+            verticalSpace(20),
+            Center(
+              child: StudentInfo(name: name, age: age),
+            ),
+            verticalSpace(40),
+            StudentDetailsCard(name: name, age: age),
+          ],
+        ),
+      ),
     );
   }
 }
