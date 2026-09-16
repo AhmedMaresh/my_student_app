@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_student_app/features/manage_student/ui/student_screen.dart';
+import 'package:my_student_app/core/routing/app_router.dart';
+import 'package:my_student_app/core/routing/routes.dart';
 
 void main() {
   runApp(const StudentApp());
@@ -17,7 +18,8 @@ class StudentApp extends StatelessWidget {
       splitScreenMode: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: StudentsScreen(),
+        initialRoute: Routes.studentsScreen,
+        onGenerateRoute: AppRouter().generateRoute,
       ),
     );
   }
