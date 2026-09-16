@@ -5,12 +5,12 @@ import 'package:my_student_app/core/helpers/spacing.dart';
 import 'package:my_student_app/core/routing/routes.dart';
 import 'package:my_student_app/core/themes/colors_manager.dart';
 import 'package:my_student_app/core/themes/styles.dart';
+import 'package:my_student_app/features/manage_student/data/models/student_model.dart';
 
 class StudentCard extends StatelessWidget {
-  final String name;
-  final int age;
+  final StudentModel student;
 
-  const StudentCard({super.key, required this.name, required this.age});
+  const StudentCard({super.key, required this.student});
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +35,7 @@ class StudentCard extends StatelessWidget {
         child: InkWell(
           borderRadius: BorderRadius.circular(16.r),
           onTap: () {
-            context.pushNamed(
-              Routes.studentDetailsScreen,
-              arguments: {'name': name, 'age': age},
-            );
+            context.pushNamed(Routes.studentDetailsScreen, arguments: student);
           },
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
@@ -58,9 +55,12 @@ class StudentCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(name, style: Styles.font16BlackBold),
+                      Text(student.name, style: Styles.font16BlackBold),
                       verticalSpace(4),
-                      Text('Age: $age', style: Styles.font14BlackRegular),
+                      Text(
+                        'Age: ${student.age}',
+                        style: Styles.font14BlackRegular,
+                      ),
                     ],
                   ),
                 ),
