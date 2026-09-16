@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_student_app/core/helpers/spacing.dart';
 import 'package:my_student_app/core/themes/colors_manager.dart';
 import 'package:my_student_app/core/themes/styles.dart';
+import 'package:my_student_app/features/manage_student/data/models/student_model.dart';
 
 class StudentDetailsCard extends StatelessWidget {
-  final String name;
-  final int age;
-  const StudentDetailsCard({super.key, required this.name, required this.age});
+  final StudentModel student;
+  const StudentDetailsCard({super.key, required this.student});
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +31,9 @@ class StudentDetailsCard extends StatelessWidget {
           Text('Student Information', style: Styles.font16BlackBold),
           Divider(color: ColorsManager.black),
           verticalSpace(5),
-          Text('Name: $name', style: Styles.font16DarkGreenRegular),
+          Text('Name: ${student.name}', style: Styles.font16DarkGreenRegular),
           verticalSpace(8),
-          Text('Age: $age', style: Styles.font16DarkGreenRegular),
+          Text('Age: ${student.age}', style: Styles.font16DarkGreenRegular),
         ],
       ),
     );
