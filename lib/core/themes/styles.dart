@@ -20,6 +20,12 @@ class Styles {
     color: ColorsManager.black,
   );
 
+  static TextStyle font16BeigeBold = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.bold,
+    color: ColorsManager.beige,
+  );
+
   static TextStyle font16DarkGreenRegular = TextStyle(
     fontSize: 16.sp,
     color: ColorsManager.darkGreen,

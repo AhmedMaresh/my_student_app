@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_student_app/core/helpers/spacing.dart';
+import 'package:my_student_app/core/themes/colors_manager.dart';
 import 'package:my_student_app/features/manage_student/data/models/student_model.dart';
 import 'package:my_student_app/features/manage_student/logic/cubit/students_cubit.dart';
 import 'package:my_student_app/features/manage_student/ui/widgets/student_screen/student_card_list_view.dart';
@@ -39,7 +40,11 @@ class StudentsBlocBuilder extends StatelessWidget {
   }
 
   Widget setupLoading() {
-    return const Expanded(child: Center(child: CircularProgressIndicator()));
+    return const Expanded(
+      child: Center(
+        child: CircularProgressIndicator(color: ColorsManager.darkGreen),
+      ),
+    );
   }
 
   Widget setupSuccess(List<StudentModel> students) {
