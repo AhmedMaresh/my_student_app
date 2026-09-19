@@ -5,7 +5,12 @@ import 'package:my_student_app/core/themes/styles.dart';
 
 class AddStudentButton extends StatelessWidget {
   final VoidCallback onPressed;
-  const AddStudentButton({super.key, required this.onPressed});
+  final bool isLoading;
+  const AddStudentButton({
+    super.key,
+    required this.onPressed,
+    required this.isLoading,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +18,7 @@ class AddStudentButton extends StatelessWidget {
       width: double.infinity,
       height: 50.h,
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: ColorsManager.darkGreen,
           foregroundColor: ColorsManager.beige,
@@ -21,7 +26,14 @@ class AddStudentButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.r),
           ),
         ),
-        child: Text('Add Student', style: Styles.font16BeigeBold),
+        child: isLoading
+            ? Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 2.5,
+                  color: ColorsManager.beige,
+                ),
+              )
+            : Text('Add Student', style: Styles.font16BeigeBold),
       ),
     );
   }
