@@ -5,7 +5,7 @@ import 'package:my_student_app/features/manage_student/data/models/student_model
 import 'package:my_student_app/features/manage_student/data/repos/student_repo.dart';
 
 part 'students_state.dart';
-part 'students_cubit.freezed.dart';
+part '../students_cubit.freezed.dart';
 
 class StudentsCubit extends Cubit<StudentsState> {
   final StudentRepo studentRepo;

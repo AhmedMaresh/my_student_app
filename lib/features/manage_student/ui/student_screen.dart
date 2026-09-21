@@ -4,10 +4,10 @@ import 'package:my_student_app/core/helpers/extensions.dart';
 import 'package:my_student_app/core/helpers/spacing.dart';
 import 'package:my_student_app/core/routing/routes.dart';
 import 'package:my_student_app/core/themes/colors_manager.dart';
-import 'package:my_student_app/features/manage_student/logic/cubit/students_cubit.dart';
+import 'package:my_student_app/features/manage_student/logic/cubit/student_cubit/students_cubit.dart';
 import 'package:my_student_app/features/manage_student/ui/widgets/student_screen/greeting_header.dart';
 import 'package:my_student_app/features/manage_student/ui/widgets/student_screen/student_search_bar.dart';
-import 'package:my_student_app/features/manage_student/ui/widgets/student_screen/students_bloc_builder.dart';
+import 'package:my_student_app/features/manage_student/ui/widgets/student_screen/students_bloc.dart';
 
 class StudentsScreen extends StatelessWidget {
   const StudentsScreen({super.key});
@@ -35,7 +35,7 @@ class StudentsScreen extends StatelessWidget {
             verticalSpace(10),
             const StudentSearchBar(),
             verticalSpace(10),
-            const StudentsBlocBuilder(),
+            const StudentsBloc(),
           ],
         ),
       ),

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:my_student_app/core/helpers/extensions.dart';
 import 'package:my_student_app/core/helpers/spacing.dart';
 import 'package:my_student_app/core/routing/routes.dart';
 import 'package:my_student_app/core/themes/colors_manager.dart';
 import 'package:my_student_app/core/themes/styles.dart';
 import 'package:my_student_app/features/manage_student/data/models/student_model.dart';
+import 'package:my_student_app/features/manage_student/logic/cubit/delete_student_cubit/cubit/delete_student_cubit.dart';
 
 class StudentCard extends StatelessWidget {
   final StudentModel student;
@@ -14,66 +17,128 @@ class StudentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20.w),
-      decoration: BoxDecoration(
-        color: ColorsManager.beige,
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: ColorsManager.darkGreen.withValues(alpha: 0.2),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
+    return Slidable(
+      endActionPane: ActionPane(
+        motion: const ScrollMotion(),
+        children: [
+          CustomSlidableAction(
+            onPressed: (slidableContext) {
+              showDeleteDialog(context, slidableContext);
+            },
+            backgroundColor: Colors.red,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(16.r),
+              bottomLeft: Radius.circular(16.r),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.delete, color: Colors.white, size: 24),
+                verticalSpace(5),
+                const Text('Delete', style: TextStyle(color: Colors.white)),
+              ],
+            ),
           ),
         ],
       ),
-      child: Material(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(16.r),
-        clipBehavior: Clip.antiAlias,
-        child: InkWell(
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 20.w),
+        decoration: BoxDecoration(
+          color: ColorsManager.beige,
           borderRadius: BorderRadius.circular(16.r),
-          onTap: () {
-            context.pushNamed(Routes.studentDetailsScreen, arguments: student);
-          },
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 24.r,
-                  backgroundColor: ColorsManager.darkGreen,
-                  child: Icon(
-                    Icons.person,
-                    color: ColorsManager.beige,
-                    size: 32.sp,
+          boxShadow: [
+            BoxShadow(
+              color: ColorsManager.darkGreen.withValues(alpha: 0.2),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Material(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(16.r),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(16.r),
+            onTap: () {
+              context.pushNamed(
+                Routes.studentDetailsScreen,
+                arguments: student,
+              );
+            },
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 24.r,
+                    backgroundColor: ColorsManager.darkGreen,
+                    child: Icon(
+                      Icons.person,
+                      color: ColorsManager.beige,
+                      size: 32.sp,
+                    ),
                   ),
-                ),
-                horizontalSpace(12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(student.name, style: Styles.font16BlackBold),
-                      verticalSpace(4),
-                      Text(
-                        'Age: ${student.age}',
-                        style: Styles.font14BlackRegular,
-                      ),
-                    ],
+                  horizontalSpace(12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(student.name, style: Styles.font16BlackBold),
+                        verticalSpace(4),
+                        Text(
+                          'Age: ${student.age}',
+                          style: Styles.font14BlackRegular,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 18.sp,
-                  color: ColorsManager.darkGreen,
-                ),
-              ],
+                  Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: 18.sp,
+                    color: ColorsManager.darkGreen,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Future<dynamic> showDeleteDialog(
+    BuildContext context,
+    BuildContext slidableContext,
+  ) {
+    return showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Text('Delete Student'),
+          content: Text('Are you sure you want to delete ${student.name} ?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                dialogContext.pop();
+              },
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: ColorsManager.black),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                context.read<DeleteStudentCubit>().deleteStudent(student.id);
+                dialogContext.pop();
+                Slidable.of(slidableContext)?.close();
+              },
+              child: const Text('Delete', style: TextStyle(color: Colors.red)),
+            ),
+          ],
+        );
+      },
     );
   }
 }

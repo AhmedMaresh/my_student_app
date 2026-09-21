@@ -15,4 +15,7 @@ abstract class ApiServices {
 
   @POST(ApiConstants.students)
   Future<StudentModel> addStudent(@Body() AddStudentRequest addStudentRequest);
+
+  @DELETE('${ApiConstants.students}/{id}')
+  Future<StudentModel> deleteStudent(@Path('id') int id);
 }
