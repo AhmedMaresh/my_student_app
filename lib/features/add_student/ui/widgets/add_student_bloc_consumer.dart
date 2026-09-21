@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_student_app/core/helpers/extensions.dart';
+import 'package:my_student_app/core/helpers/snack_bar.dart';
 import 'package:my_student_app/core/helpers/spacing.dart';
 import 'package:my_student_app/features/add_student/data/models/add_student_request.dart';
 import 'package:my_student_app/features/add_student/logic/cubit/add_student_cubit.dart';
@@ -25,15 +26,11 @@ class AddStudentBlocConsumer extends StatelessWidget {
       listener: (context, state) {
         state.maybeWhen(
           addStudentSuccess: (student) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Student Added Successfully')),
-            );
+            showSnackBar(context, 'Student Added Successfully');
             context.pop();
           },
           addStudentFailure: (errMessage) {
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(errMessage)));
+            showSnackBar(context, errMessage);
           },
           orElse: () {},
         );
