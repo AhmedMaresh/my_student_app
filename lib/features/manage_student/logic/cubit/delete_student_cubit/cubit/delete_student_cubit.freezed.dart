@@ -272,12 +272,12 @@ _$DeleteStudentSuccessCopyWith<_DeleteStudentSuccess> get copyWith => __$DeleteS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeleteStudentSuccess&&const DeepCollectionEquality().equals(other.student, student));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DeleteStudentSuccess&&(identical(other.student, student) || other.student == student));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(student));
+int get hashCode => Object.hash(runtimeType,student);
 
 @override
 String toString() {
@@ -296,7 +296,7 @@ $Res call({
 });
 
 
-
+$StudentModelCopyWith<$Res> get student;
 
 }
 /// @nodoc
@@ -309,14 +309,23 @@ class __$DeleteStudentSuccessCopyWithImpl<$Res>
 
 /// Create a copy of DeleteStudentState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? student = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? student = null,}) {
   return _then(_DeleteStudentSuccess(
-freezed == student ? _self.student : student // ignore: cast_nullable_to_non_nullable
+null == student ? _self.student : student // ignore: cast_nullable_to_non_nullable
 as StudentModel,
   ));
 }
 
-
+/// Create a copy of DeleteStudentState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$StudentModelCopyWith<$Res> get student {
+  
+  return $StudentModelCopyWith<$Res>(_self.student, (value) {
+    return _then(_self.copyWith(student: value));
+  });
+}
 }
 
 /// @nodoc
