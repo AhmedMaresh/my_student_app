@@ -13,6 +13,8 @@ import 'package:my_student_app/features/manage_student/logic/cubit/delete_studen
 import 'package:my_student_app/features/manage_student/logic/cubit/student_cubit/students_cubit.dart';
 import 'package:my_student_app/features/manage_student/ui/student_details_screen.dart';
 import 'package:my_student_app/features/manage_student/ui/student_screen.dart';
+import 'package:my_student_app/features/update_student/data/repos/update_student_repo.dart';
+import 'package:my_student_app/features/update_student/logic/cubit/update_student_cubit.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
@@ -40,7 +42,12 @@ class AppRouter {
       case Routes.studentDetailsScreen:
         final student = settings.arguments as StudentModel;
         return MaterialPageRoute(
-          builder: (_) => StudentDetailsScreen(student: student),
+          builder: (_) => BlocProvider<UpdateStudentCubit>(
+            create: (_) => UpdateStudentCubit(
+              UpdateStudentRepo(ApiServices(DioFactory.getDio())),
+            ),
+            child: StudentDetailsScreen(student: student),
+          ),
         );
       // Add Student Screen
       case Routes.addStudentScreen:

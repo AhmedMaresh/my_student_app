@@ -9,6 +9,7 @@ import 'package:my_student_app/core/themes/colors_manager.dart';
 import 'package:my_student_app/core/themes/styles.dart';
 import 'package:my_student_app/features/manage_student/data/models/student_model.dart';
 import 'package:my_student_app/features/manage_student/logic/cubit/delete_student_cubit/cubit/delete_student_cubit.dart';
+import 'package:my_student_app/features/manage_student/logic/cubit/student_cubit/students_cubit.dart';
 
 class StudentCard extends StatelessWidget {
   final StudentModel student;
@@ -61,11 +62,15 @@ class StudentCard extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           child: InkWell(
             borderRadius: BorderRadius.circular(16.r),
-            onTap: () {
-              context.pushNamed(
+            onTap: () async {
+              await context.pushNamed(
                 Routes.studentDetailsScreen,
                 arguments: student,
               );
+
+              if (context.mounted) {
+                context.read<StudentsCubit>().getStudents();
+              }
             },
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
