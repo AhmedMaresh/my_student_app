@@ -6,12 +6,14 @@ class UpdateStudentTextField extends StatelessWidget {
   final String labelText;
   final TextEditingController controller;
   final TextInputType? keyboardType;
+  final String? Function(String?)? validator;
 
   const UpdateStudentTextField({
     super.key,
     required this.controller,
     required this.labelText,
     this.keyboardType,
+    this.validator,
   });
 
   @override
@@ -21,7 +23,8 @@ class UpdateStudentTextField extends StatelessWidget {
         cursorColor: ColorsManager.darkGreen,
         selectionHandleColor: ColorsManager.darkGreen,
       ),
-      child: TextField(
+      child: TextFormField(
+        validator: validator,
         controller: controller,
         keyboardType: keyboardType,
         decoration: InputDecoration(

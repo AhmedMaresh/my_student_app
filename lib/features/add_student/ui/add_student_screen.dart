@@ -15,6 +15,8 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
 
+  final formKey = GlobalKey<FormState>();
+
   @override
   void dispose() {
     nameController.dispose();
@@ -36,6 +38,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
         child: AddStudentBlocConsumer(
           nameController: nameController,
           ageController: ageController,
+          formKey: formKey,
         ),
       ),
     );

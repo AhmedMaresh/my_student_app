@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_student_app/core/helpers/app_regex.dart';
 import 'package:my_student_app/core/helpers/extensions.dart';
 import 'package:my_student_app/core/helpers/snack_bar.dart';
 import 'package:my_student_app/core/helpers/spacing.dart';
@@ -21,6 +22,7 @@ class UpdateStudentDialog extends StatefulWidget {
 class _UpdateStudentDialogState extends State<UpdateStudentDialog> {
   late final TextEditingController nameController;
   late final TextEditingController ageController;
+  final formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -62,20 +64,51 @@ class _UpdateStudentDialogState extends State<UpdateStudentDialog> {
         );
         return AlertDialog(
           title: const Text('Edit Student'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              UpdateStudentTextField(
-                controller: nameController,
-                labelText: 'Name',
-              ),
-              verticalSpace(12),
-              UpdateStudentTextField(
-                controller: ageController,
-                labelText: 'Age',
-                keyboardType: TextInputType.number,
-              ),
-            ],
+          content: Form(
+            key: formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                UpdateStudentTextField(
+                  controller: nameController,
+                  labelText: 'Name',
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Student name is required';
+                    }
+
+                    if (!AppRegex.isNameValid(value.trim())) {
+                      return 'Please enter a valid name';
+                    }
+
+                    return null;
+                  },
+                ),
+                verticalSpace(12),
+                UpdateStudentTextField(
+                  controller: ageController,
+                  labelText: 'Age',
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Age is required';
+                    }
+
+                    final age = int.tryParse(value.trim());
+
+                    if (age == null) {
+                      return 'Age must be a valid number';
+                    }
+
+                    if (age <= 0 || age > 50) {
+                      return 'Please enter a valid age';
+                    }
+
+                    return null;
+                  },
+                ),
+              ],
+            ),
           ),
           actions: [
             UpdateStudentTextButton(
@@ -94,13 +127,12 @@ class _UpdateStudentDialogState extends State<UpdateStudentDialog> {
               onPressed: isLoading
                   ? null
                   : () {
-                      final name = nameController.text.trim();
-                      final age = int.tryParse(ageController.text.trim());
-
-                      if (name.isEmpty || age == null) {
-                        showSnackBar(context, 'Please enter valid data');
+                      if (!formKey.currentState!.validate()) {
                         return;
                       }
+
+                      final name = nameController.text.trim();
+                      final age = int.parse(ageController.text.trim());
 
                       final request = UpdateStudentRequest(
                         name: name,
