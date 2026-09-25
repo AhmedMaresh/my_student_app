@@ -7,6 +7,7 @@ class AddStudentTextField extends StatelessWidget {
   final String hintText;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
   const AddStudentTextField({
     super.key,
@@ -14,6 +15,7 @@ class AddStudentTextField extends StatelessWidget {
     required this.hintText,
     this.keyboardType,
     this.controller,
+    this.validator,
   });
 
   @override
@@ -24,6 +26,7 @@ class AddStudentTextField extends StatelessWidget {
         selectionHandleColor: ColorsManager.darkGreen,
       ),
       child: TextFormField(
+        validator: validator,
         controller: controller,
         keyboardType: keyboardType,
         decoration: InputDecoration(
