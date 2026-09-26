@@ -6,7 +6,6 @@ import 'package:my_student_app/core/helpers/extensions.dart';
 import 'package:my_student_app/core/helpers/spacing.dart';
 import 'package:my_student_app/core/routing/routes.dart';
 import 'package:my_student_app/core/themes/colors_manager.dart';
-import 'package:my_student_app/core/themes/styles.dart';
 import 'package:my_student_app/features/manage_student/data/models/student_model.dart';
 import 'package:my_student_app/features/manage_student/logic/cubit/delete_student_cubit/cubit/delete_student_cubit.dart';
 import 'package:my_student_app/features/manage_student/logic/cubit/student_cubit/students_cubit.dart';
@@ -18,6 +17,8 @@ class StudentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textColor = Theme.of(context).textTheme.bodyLarge?.color;
+
     return Slidable(
       endActionPane: ActionPane(
         motion: const ScrollMotion(),
@@ -45,11 +46,11 @@ class StudentCard extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20.w),
         decoration: BoxDecoration(
-          color: ColorsManager.beige,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(16.r),
           boxShadow: [
             BoxShadow(
-              color: ColorsManager.darkGreen.withValues(alpha: 0.2),
+              color: ColorsManager.primaryBlue.withValues(alpha: 0.2),
               spreadRadius: 2,
               blurRadius: 5,
               offset: const Offset(0, 3),
@@ -78,10 +79,10 @@ class StudentCard extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 24.r,
-                    backgroundColor: ColorsManager.darkGreen,
+                    backgroundColor: ColorsManager.primaryBlue,
                     child: Icon(
                       Icons.person,
-                      color: ColorsManager.beige,
+                      color: ColorsManager.white,
                       size: 32.sp,
                     ),
                   ),
@@ -90,11 +91,21 @@ class StudentCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(student.name, style: Styles.font16BlackBold),
+                        Text(
+                          student.name,
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                            color: textColor,
+                          ),
+                        ),
                         verticalSpace(4),
                         Text(
                           'Age: ${student.age}',
-                          style: Styles.font14BlackRegular,
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            color: textColor?.withValues(alpha: 0.7),
+                          ),
                         ),
                       ],
                     ),
@@ -102,7 +113,7 @@ class StudentCard extends StatelessWidget {
                   Icon(
                     Icons.arrow_forward_ios_rounded,
                     size: 18.sp,
-                    color: ColorsManager.darkGreen,
+                    color: ColorsManager.primaryBlue,
                   ),
                 ],
               ),
@@ -128,10 +139,7 @@ class StudentCard extends StatelessWidget {
               onPressed: () {
                 dialogContext.pop();
               },
-              child: const Text(
-                'Cancel',
-                style: TextStyle(color: ColorsManager.black),
-              ),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {

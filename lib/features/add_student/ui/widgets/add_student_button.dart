@@ -20,8 +20,8 @@ class AddStudentButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: ColorsManager.darkGreen,
-          foregroundColor: ColorsManager.beige,
+          backgroundColor: ColorsManager.primaryBlue,
+          foregroundColor: ColorsManager.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.r),
           ),
@@ -30,10 +30,10 @@ class AddStudentButton extends StatelessWidget {
             ? Center(
                 child: CircularProgressIndicator(
                   strokeWidth: 2.5,
-                  color: ColorsManager.beige,
+                  color: ColorsManager.white,
                 ),
               )
-            : Text('Add Student', style: Styles.font16BeigeBold),
+            : Text('Add Student', style: Styles.font16WhiteBold),
       ),
     );
   }

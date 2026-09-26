@@ -17,7 +17,6 @@ class StudentsScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: ColorsManager.darkGreen,
         shape: const CircleBorder(),
         onPressed: () async {
           await context.pushNamed(Routes.addStudentScreen);
@@ -25,7 +24,7 @@ class StudentsScreen extends StatelessWidget {
             context.read<StudentsCubit>().getStudents();
           }
         },
-        child: Icon(Icons.add, color: ColorsManager.beige),
+        child: Icon(Icons.add, color: ColorsManager.white),
       ),
       body: SafeArea(
         child: Column(

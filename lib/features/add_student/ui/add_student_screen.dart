@@ -28,10 +28,10 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ColorsManager.darkGreen,
-        foregroundColor: ColorsManager.beige,
+        backgroundColor: ColorsManager.primaryBlue,
+        foregroundColor: ColorsManager.white,
         elevation: 0,
-        title: Text('Add Student', style: Styles.font20Bold),
+        title: Text('Add Student', style: Styles.font20PrimaryBlueBold),
       ),
       body: Padding(
         padding: EdgeInsets.all(20.w),

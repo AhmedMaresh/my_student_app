@@ -113,7 +113,7 @@ class _UpdateStudentDialogState extends State<UpdateStudentDialog> {
           actions: [
             UpdateStudentTextButton(
               buttonText: 'Cancel',
-              color: ColorsManager.black,
+              color: Theme.of(context).colorScheme.onSurface,
               onPressed: isLoading
                   ? null
                   : () {
@@ -123,7 +123,7 @@ class _UpdateStudentDialogState extends State<UpdateStudentDialog> {
             UpdateStudentTextButton(
               isLoading: isLoading,
               buttonText: 'Update',
-              color: ColorsManager.darkGreen,
+              color: ColorsManager.primaryBlue,
               onPressed: isLoading
                   ? null
                   : () {

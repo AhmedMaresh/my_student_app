@@ -31,10 +31,15 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ColorsManager.darkGreen,
-        foregroundColor: ColorsManager.beige,
+        backgroundColor: ColorsManager.primaryBlue,
+        foregroundColor: ColorsManager.white,
         elevation: 0,
-        title: Text('Student Details', style: Styles.font20Bold),
+        title: Text(
+          'Student Details',
+          style: Styles.font20PrimaryBlueBold.copyWith(
+            color: ColorsManager.white,
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () async {

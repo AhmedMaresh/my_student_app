@@ -3,14 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_student_app/core/themes/colors_manager.dart';
 
 class Styles {
-  static TextStyle font28DarkGreenBold = TextStyle(
+  static TextStyle font28PrimaryBlueBold = TextStyle(
     fontSize: 28.sp,
     fontWeight: FontWeight.bold,
-    color: ColorsManager.darkGreen,
+    color: ColorsManager.primaryBlue,
   );
 
-  static TextStyle font20Bold = TextStyle(
+  static TextStyle font20PrimaryBlueBold = TextStyle(
     fontSize: 20.sp,
+    color: ColorsManager.primaryBlue,
     fontWeight: FontWeight.bold,
   );
 
@@ -20,15 +21,15 @@ class Styles {
     color: ColorsManager.black,
   );
 
-  static TextStyle font16BeigeBold = TextStyle(
+  static TextStyle font16WhiteBold = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.bold,
-    color: ColorsManager.beige,
+    color: ColorsManager.white,
   );
 
-  static TextStyle font16DarkGreenRegular = TextStyle(
+  static TextStyle font16PrimaryBlueRegular = TextStyle(
     fontSize: 16.sp,
-    color: ColorsManager.darkGreen,
+    color: ColorsManager.primaryBlue,
   );
 
   static TextStyle font14BlackRegular = TextStyle(

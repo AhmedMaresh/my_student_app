@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_student_app/core/routing/app_router.dart';
 import 'package:my_student_app/core/routing/routes.dart';
+import 'package:my_student_app/core/themes/app_theme.dart';
 
 void main() {
   runApp(const StudentApp());
@@ -20,6 +21,9 @@ class StudentApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: Routes.studentsScreen,
         onGenerateRoute: AppRouter().generateRoute,
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.dark,
       ),
     );
   }
