@@ -22,28 +22,37 @@ class AddStudentTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextSelectionTheme(
       data: TextSelectionThemeData(
-        cursorColor: ColorsManager.darkGreen,
-        selectionHandleColor: ColorsManager.darkGreen,
+        cursorColor: ColorsManager.primaryBlue,
+        selectionHandleColor: ColorsManager.primaryBlue,
       ),
       child: TextFormField(
         validator: validator,
         controller: controller,
         keyboardType: keyboardType,
+        style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
         decoration: InputDecoration(
           labelText: labelText,
           hintText: hintText,
-          labelStyle: TextStyle(color: ColorsManager.darkGreen),
+          labelStyle: TextStyle(color: ColorsManager.primaryBlue),
+          hintStyle: TextStyle(
+            color: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.color?.withValues(alpha: 0.5),
+          ),
           // ENABLED BORDER
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.r),
             borderSide: BorderSide(
-              color: ColorsManager.darkGreen.withValues(alpha: .3),
+              color: ColorsManager.primaryBlue.withValues(alpha: .3),
             ),
           ),
           // FOCUSED BORDER
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.r),
-            borderSide: BorderSide(color: ColorsManager.darkGreen, width: 2.w),
+            borderSide: BorderSide(
+              color: ColorsManager.primaryBlue,
+              width: 2.w,
+            ),
           ),
         ),
       ),

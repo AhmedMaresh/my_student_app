@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:my_student_app/core/themes/colors_manager.dart';
-
 class StudentsSectionHeader extends StatelessWidget {
   final int studentCount;
 
@@ -10,6 +8,8 @@ class StudentsSectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textColor = Theme.of(context).textTheme.bodyLarge?.color;
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Row(
@@ -19,18 +19,16 @@ class StudentsSectionHeader extends StatelessWidget {
             style: TextStyle(
               fontSize: 20.sp,
               fontWeight: FontWeight.bold,
-              color: ColorsManager.darkGreen,
+              color: textColor,
             ),
           ),
-
           const Spacer(),
-
           Text(
             '$studentCount Students',
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.w500,
-              color: ColorsManager.darkGreen.withValues(alpha: 0.6),
+              color: textColor?.withValues(alpha: 0.6),
             ),
           ),
         ],

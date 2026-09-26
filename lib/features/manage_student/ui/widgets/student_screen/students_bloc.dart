@@ -58,12 +58,20 @@ class StudentsBloc extends StatelessWidget {
   Widget setupLoading() {
     return const Expanded(
       child: Center(
-        child: CircularProgressIndicator(color: ColorsManager.darkGreen),
+        child: CircularProgressIndicator(color: ColorsManager.primaryBlue),
       ),
     );
   }
 
   Widget setupSuccess(List<StudentModel> students) {
+    if (students.isEmpty) {
+      return const Expanded(
+        child: Center(
+          child: Text('No students yet', style: TextStyle(fontSize: 18)),
+        ),
+      );
+    }
+
     return Expanded(
       child: Column(
         children: [

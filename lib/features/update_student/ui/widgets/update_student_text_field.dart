@@ -20,27 +20,31 @@ class UpdateStudentTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextSelectionTheme(
       data: TextSelectionThemeData(
-        cursorColor: ColorsManager.darkGreen,
-        selectionHandleColor: ColorsManager.darkGreen,
+        cursorColor: ColorsManager.primaryBlue,
+        selectionHandleColor: ColorsManager.primaryBlue,
       ),
       child: TextFormField(
         validator: validator,
         controller: controller,
         keyboardType: keyboardType,
+        style: TextStyle(color: Theme.of(context).textTheme.bodyLarge?.color),
         decoration: InputDecoration(
-          floatingLabelStyle: TextStyle(color: ColorsManager.darkGreen),
+          floatingLabelStyle: TextStyle(color: ColorsManager.primaryBlue),
           labelText: labelText,
           // ENABLED BORDER
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.r),
             borderSide: BorderSide(
-              color: ColorsManager.darkGreen.withValues(alpha: .3),
+              color: ColorsManager.primaryBlue.withValues(alpha: .3),
             ),
           ),
           // FOCUSED BORDER
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.r),
-            borderSide: BorderSide(color: ColorsManager.darkGreen, width: 2.w),
+            borderSide: BorderSide(
+              color: ColorsManager.primaryBlue,
+              width: 2.w,
+            ),
           ),
         ),
       ),

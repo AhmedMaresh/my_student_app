@@ -8,6 +8,7 @@ import 'package:my_student_app/features/add_student/data/models/add_student_requ
 import 'package:my_student_app/features/add_student/logic/cubit/add_student_cubit.dart';
 import 'package:my_student_app/features/add_student/ui/widgets/add_student_button.dart';
 import 'package:my_student_app/features/add_student/ui/widgets/add_student_text_field.dart';
+import 'package:my_student_app/features/add_student/ui/widgets/student_image_picker.dart';
 
 class AddStudentBlocConsumer extends StatelessWidget {
   final TextEditingController nameController;
@@ -48,7 +49,9 @@ class AddStudentBlocConsumer extends StatelessWidget {
           key: formKey,
           child: Column(
             children: [
-              verticalSpace(15),
+              verticalSpace(10),
+              const StudentImagePicker(),
+              verticalSpace(35),
               AddStudentTextField(
                 controller: nameController,
                 labelText: 'Student Name',
