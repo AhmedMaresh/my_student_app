@@ -15,6 +15,10 @@ class AppTheme {
       elevation: 0,
     ),
     cardColor: ColorsManager.lightCard,
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: ColorsManager.primaryBlue,
+      foregroundColor: ColorsManager.white,
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -30,5 +34,9 @@ class AppTheme {
       elevation: 0,
     ),
     cardColor: ColorsManager.darkCard,
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: ColorsManager.primaryBlue,
+      foregroundColor: ColorsManager.white,
+    ),
   );
 }

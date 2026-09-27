@@ -13,6 +13,7 @@ import 'package:my_student_app/features/manage_student/logic/cubit/delete_studen
 import 'package:my_student_app/features/manage_student/logic/cubit/student_cubit/students_cubit.dart';
 import 'package:my_student_app/features/manage_student/ui/student_details_screen.dart';
 import 'package:my_student_app/features/manage_student/ui/student_screen.dart';
+import 'package:my_student_app/features/settings/ui/settings_screen.dart';
 import 'package:my_student_app/features/update_student/data/repos/update_student_repo.dart';
 import 'package:my_student_app/features/update_student/logic/cubit/update_student_cubit.dart';
 
@@ -59,6 +60,8 @@ class AppRouter {
             child: const AddStudentScreen(),
           ),
         );
+      case Routes.settingsScreen:
+        return MaterialPageRoute(builder: (_) => const SettingsScreen());
       default:
         return null;
     }

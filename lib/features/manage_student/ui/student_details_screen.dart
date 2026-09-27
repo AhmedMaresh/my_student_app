@@ -36,9 +36,7 @@ class _StudentDetailsScreenState extends State<StudentDetailsScreen> {
         elevation: 0,
         title: Text(
           'Student Details',
-          style: Styles.font20PrimaryBlueBold.copyWith(
-            color: ColorsManager.white,
-          ),
+          style: Styles.font20WhiteBold.copyWith(color: ColorsManager.white),
         ),
         actions: [
           IconButton(

@@ -6,6 +6,7 @@ import 'package:my_student_app/core/themes/colors_manager.dart';
 import 'package:my_student_app/features/manage_student/data/models/student_model.dart';
 import 'package:my_student_app/features/manage_student/logic/cubit/delete_student_cubit/cubit/delete_student_cubit.dart';
 import 'package:my_student_app/features/manage_student/logic/cubit/student_cubit/students_cubit.dart';
+import 'package:my_student_app/features/manage_student/ui/widgets/student_screen/empty_students_state.dart';
 import 'package:my_student_app/features/manage_student/ui/widgets/student_screen/student_card_list_view.dart';
 import 'package:my_student_app/features/manage_student/ui/widgets/student_screen/student_section_header.dart';
 
@@ -65,11 +66,7 @@ class StudentsBloc extends StatelessWidget {
 
   Widget setupSuccess(List<StudentModel> students) {
     if (students.isEmpty) {
-      return const Expanded(
-        child: Center(
-          child: Text('No students yet', style: TextStyle(fontSize: 18)),
-        ),
-      );
+      return const Expanded(child: Center(child: EmptyStudentsState()));
     }
 
     return Expanded(
