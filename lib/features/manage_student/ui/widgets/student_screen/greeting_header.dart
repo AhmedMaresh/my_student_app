@@ -12,19 +12,37 @@ class GreetingHeader extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          Text(
-            'Good Evening 👋',
-            style: Styles.font28PrimaryBlueBold.copyWith(color: textColor),
-          ),
-          verticalSpace(6),
-          Text(
-            'Manage your students',
-            style: Styles.font16PrimaryBlueRegular.copyWith(
-              color: textColor?.withValues(alpha: 0.6),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Good Evening 👋',
+                  style: Styles.font28PrimaryBlueBold.copyWith(
+                    color: textColor,
+                  ),
+                ),
+                verticalSpace(6),
+                Text(
+                  'Manage your students',
+                  style: Styles.font16PrimaryBlueRegular.copyWith(
+                    color: textColor?.withValues(alpha: 0.6),
+                  ),
+                ),
+              ],
             ),
+          ),
+          Builder(
+            builder: (context) {
+              return IconButton(
+                onPressed: () {
+                  Scaffold.of(context).openEndDrawer();
+                },
+                icon: const Icon(Icons.menu),
+              );
+            },
           ),
         ],
       ),

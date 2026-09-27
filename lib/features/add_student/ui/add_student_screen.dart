@@ -31,7 +31,7 @@ class _AddStudentScreenState extends State<AddStudentScreen> {
         backgroundColor: ColorsManager.primaryBlue,
         foregroundColor: ColorsManager.white,
         elevation: 0,
-        title: Text('Add Student', style: Styles.font20PrimaryBlueBold),
+        title: Text('Add Student', style: Styles.font20WhiteBold),
       ),
       body: Padding(
         padding: EdgeInsets.all(20.w),

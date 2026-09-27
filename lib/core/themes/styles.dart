@@ -9,9 +9,9 @@ class Styles {
     color: ColorsManager.primaryBlue,
   );
 
-  static TextStyle font20PrimaryBlueBold = TextStyle(
+  static TextStyle font20WhiteBold = TextStyle(
     fontSize: 20.sp,
-    color: ColorsManager.primaryBlue,
+    color: ColorsManager.white,
     fontWeight: FontWeight.bold,
   );
 
