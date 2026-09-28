@@ -19,6 +19,18 @@ class AppTheme {
       backgroundColor: ColorsManager.primaryBlue,
       foregroundColor: ColorsManager.white,
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: ColorsManager.lightCard,
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: ColorsManager.primaryBlue,
+        foregroundColor: ColorsManager.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      ),
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -37,6 +49,18 @@ class AppTheme {
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: ColorsManager.primaryBlue,
       foregroundColor: ColorsManager.white,
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: ColorsManager.darkCard,
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: ColorsManager.primaryBlue,
+        foregroundColor: ColorsManager.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      ),
     ),
   );
 }
