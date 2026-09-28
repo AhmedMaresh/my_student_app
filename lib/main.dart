@@ -26,7 +26,7 @@ class StudentApp extends StatelessWidget {
             print('Theme Mode: $themeMode');
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              initialRoute: Routes.studentsScreen,
+              initialRoute: Routes.loginScreen,
               onGenerateRoute: AppRouter().generateRoute,
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,

@@ -6,6 +6,8 @@ import 'package:my_student_app/core/routing/routes.dart';
 import 'package:my_student_app/features/add_student/data/repos/add_student_repo.dart';
 import 'package:my_student_app/features/add_student/logic/cubit/add_student_cubit.dart';
 import 'package:my_student_app/features/add_student/ui/add_student_screen.dart';
+import 'package:my_student_app/features/auth/ui/login_screen.dart';
+import 'package:my_student_app/features/auth/ui/register_screen.dart';
 import 'package:my_student_app/features/manage_student/data/models/student_model.dart';
 import 'package:my_student_app/features/manage_student/data/repos/delete_student_repo.dart';
 import 'package:my_student_app/features/manage_student/data/repos/student_repo.dart';
@@ -20,7 +22,7 @@ import 'package:my_student_app/features/update_student/logic/cubit/update_studen
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      //Students Screen
+      //Students Screen -----------------------------------------------
       case Routes.studentsScreen:
         return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
@@ -39,7 +41,7 @@ class AppRouter {
             child: const StudentsScreen(),
           ),
         );
-      // Student Details Screen
+      // Student Details Screen -----------------------------------------------
       case Routes.studentDetailsScreen:
         final student = settings.arguments as StudentModel;
         return MaterialPageRoute(
@@ -50,7 +52,7 @@ class AppRouter {
             child: StudentDetailsScreen(student: student),
           ),
         );
-      // Add Student Screen
+      // Add Student Screen -----------------------------------------------
       case Routes.addStudentScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider<AddStudentCubit>(
@@ -60,8 +62,15 @@ class AppRouter {
             child: const AddStudentScreen(),
           ),
         );
+      // Settings Screen -----------------------------------------------
       case Routes.settingsScreen:
         return MaterialPageRoute(builder: (_) => const SettingsScreen());
+      // Login Screen -----------------------------------------------
+      case Routes.loginScreen:
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
+      // Register Screen -----------------------------------------------
+      case Routes.registerScreen:
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
       default:
         return null;
     }
