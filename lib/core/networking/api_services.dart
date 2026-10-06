@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:my_student_app/core/networking/api_constants.dart';
 import 'package:my_student_app/features/add_student/data/models/add_student_request.dart';
+import 'package:my_student_app/features/auth/data/models/register_request.dart';
+import 'package:my_student_app/features/auth/data/models/register_response.dart';
 import 'package:my_student_app/features/manage_student/data/models/student_model.dart';
 import 'package:my_student_app/features/update_student/data/models/update_student_request.dart';
 import 'package:retrofit/retrofit.dart';
@@ -25,4 +27,7 @@ abstract class ApiServices {
     @Path('id') int id,
     @Body() UpdateStudentRequest updateStudentRequest,
   );
+
+  @POST(ApiConstants.register)
+  Future<RegisterResponse> register(@Body() RegisterRequest registerRequest);
 }

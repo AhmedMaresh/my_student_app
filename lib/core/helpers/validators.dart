@@ -36,4 +36,40 @@ class Validators {
 
     return null;
   }
+
+  static String? validateAge(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your age';
+    }
+
+    final age = int.tryParse(value);
+
+    if (age == null) {
+      return 'Please enter a valid age';
+    }
+
+    if (age < 5 || age > 100) {
+      return 'Please enter a valid age';
+    }
+
+    return null;
+  }
+
+  static String? validateLevel(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your level';
+    }
+
+    final level = int.tryParse(value);
+
+    if (level == null) {
+      return 'Please enter a valid level';
+    }
+
+    if (level < 1 || level > 10) {
+      return 'Level must be between 1 and 10';
+    }
+
+    return null;
+  }
 }
