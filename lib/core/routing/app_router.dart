@@ -6,6 +6,8 @@ import 'package:my_student_app/core/routing/routes.dart';
 import 'package:my_student_app/features/add_student/data/repos/add_student_repo.dart';
 import 'package:my_student_app/features/add_student/logic/cubit/add_student_cubit.dart';
 import 'package:my_student_app/features/add_student/ui/add_student_screen.dart';
+import 'package:my_student_app/features/auth/data/repos/auth_repo.dart';
+import 'package:my_student_app/features/auth/logic/cubit/register_cubit.dart';
 import 'package:my_student_app/features/auth/ui/login_screen.dart';
 import 'package:my_student_app/features/auth/ui/register_screen.dart';
 import 'package:my_student_app/features/manage_student/data/models/student_model.dart';
@@ -70,7 +72,13 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       // Register Screen -----------------------------------------------
       case Routes.registerScreen:
-        return MaterialPageRoute(builder: (_) => const RegisterScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<RegisterCubit>(
+            create: (_) =>
+                RegisterCubit(AuthRepo(ApiServices(DioFactory.getDio()))),
+            child: const RegisterScreen(),
+          ),
+        );
       default:
         return null;
     }

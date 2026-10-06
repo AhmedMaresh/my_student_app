@@ -59,6 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {}
                     },
+                    isLoading: false,
                   ),
                   verticalSpace(20),
                   const DoNotHaveAccount(),
