@@ -6,7 +6,7 @@ import 'package:my_student_app/features/auth/data/models/register_response.dart'
 import 'package:my_student_app/features/auth/data/repos/auth_repo.dart';
 
 part 'register_state.dart';
-part 'register_cubit.freezed.dart';
+part '../register_cubit.freezed.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   final AuthRepo authRepo;

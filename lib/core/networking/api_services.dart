@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:my_student_app/core/networking/api_constants.dart';
 import 'package:my_student_app/features/add_student/data/models/add_student_request.dart';
+import 'package:my_student_app/features/auth/data/models/login_request.dart';
+import 'package:my_student_app/features/auth/data/models/login_response.dart';
 import 'package:my_student_app/features/auth/data/models/register_request.dart';
 import 'package:my_student_app/features/auth/data/models/register_response.dart';
 import 'package:my_student_app/features/manage_student/data/models/student_model.dart';
@@ -30,4 +32,7 @@ abstract class ApiServices {
 
   @POST(ApiConstants.register)
   Future<RegisterResponse> register(@Body() RegisterRequest registerRequest);
+
+  @POST(ApiConstants.login)
+  Future<LoginResponse> login(@Body() LoginRequest loginRequest);
 }

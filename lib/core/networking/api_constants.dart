@@ -4,4 +4,6 @@ class ApiConstants {
   static const String students = '/students';
 
   static const String register = '/auth/register';
+
+  static const String login = '/auth/login';
 }

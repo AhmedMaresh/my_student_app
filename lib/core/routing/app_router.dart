@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_student_app/core/networking/api_services.dart';
-import 'package:my_student_app/core/networking/dio_factory.dart';
+import 'package:my_student_app/core/di/service_locator.dart';
 import 'package:my_student_app/core/routing/routes.dart';
 import 'package:my_student_app/features/add_student/data/repos/add_student_repo.dart';
 import 'package:my_student_app/features/add_student/logic/cubit/add_student_cubit.dart';
 import 'package:my_student_app/features/add_student/ui/add_student_screen.dart';
 import 'package:my_student_app/features/auth/data/repos/auth_repo.dart';
-import 'package:my_student_app/features/auth/logic/cubit/register_cubit.dart';
+import 'package:my_student_app/features/auth/logic/cubit/login/login_cubit.dart';
+import 'package:my_student_app/features/auth/logic/cubit/register/register_cubit.dart';
 import 'package:my_student_app/features/auth/ui/login_screen.dart';
 import 'package:my_student_app/features/auth/ui/register_screen.dart';
 import 'package:my_student_app/features/manage_student/data/models/student_model.dart';
@@ -31,13 +31,10 @@ class AppRouter {
             providers: [
               BlocProvider<StudentsCubit>(
                 create: (_) =>
-                    StudentsCubit(StudentRepo(ApiServices(DioFactory.getDio())))
-                      ..getStudents(),
+                    StudentsCubit(getIt<StudentRepo>())..getStudents(),
               ),
               BlocProvider<DeleteStudentCubit>(
-                create: (_) => DeleteStudentCubit(
-                  DeleteStudentRepo(ApiServices(DioFactory.getDio())),
-                ),
+                create: (_) => DeleteStudentCubit(getIt<DeleteStudentRepo>()),
               ),
             ],
             child: const StudentsScreen(),
@@ -48,9 +45,7 @@ class AppRouter {
         final student = settings.arguments as StudentModel;
         return MaterialPageRoute(
           builder: (_) => BlocProvider<UpdateStudentCubit>(
-            create: (_) => UpdateStudentCubit(
-              UpdateStudentRepo(ApiServices(DioFactory.getDio())),
-            ),
+            create: (_) => UpdateStudentCubit(getIt<UpdateStudentRepo>()),
             child: StudentDetailsScreen(student: student),
           ),
         );
@@ -58,9 +53,7 @@ class AppRouter {
       case Routes.addStudentScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider<AddStudentCubit>(
-            create: (_) => AddStudentCubit(
-              AddStudentRepo(ApiServices(DioFactory.getDio())),
-            ),
+            create: (_) => AddStudentCubit(getIt<AddStudentRepo>()),
             child: const AddStudentScreen(),
           ),
         );
@@ -69,13 +62,17 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SettingsScreen());
       // Login Screen -----------------------------------------------
       case Routes.loginScreen:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider<LoginCubit>(
+            create: (context) => LoginCubit(getIt<AuthRepo>()),
+            child: const LoginScreen(),
+          ),
+        );
       // Register Screen -----------------------------------------------
       case Routes.registerScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider<RegisterCubit>(
-            create: (_) =>
-                RegisterCubit(AuthRepo(ApiServices(DioFactory.getDio()))),
+            create: (_) => RegisterCubit(getIt<AuthRepo>()),
             child: const RegisterScreen(),
           ),
         );
