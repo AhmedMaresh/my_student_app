@@ -5,7 +5,7 @@ import 'package:my_student_app/core/helpers/snack_bar.dart';
 import 'package:my_student_app/core/helpers/spacing.dart';
 import 'package:my_student_app/core/helpers/validators.dart';
 import 'package:my_student_app/features/auth/data/models/register_request.dart';
-import 'package:my_student_app/features/auth/logic/cubit/register_cubit.dart';
+import 'package:my_student_app/features/auth/logic/cubit/register/register_cubit.dart';
 import 'package:my_student_app/features/auth/ui/widgets/auth_button.dart';
 import 'package:my_student_app/features/auth/ui/widgets/auth_text_field.dart';
 import 'package:my_student_app/features/auth/ui/widgets/register/age_and_level_text_field.dart';

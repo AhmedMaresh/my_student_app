@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_student_app/core/di/service_locator.dart';
 import 'package:my_student_app/core/routing/app_router.dart';
 import 'package:my_student_app/core/routing/routes.dart';
 import 'package:my_student_app/core/themes/app_theme.dart';
 import 'package:my_student_app/features/settings/logic/cubit/theme_cubit.dart';
 
 void main() {
+  setupGetIt();
   runApp(const StudentApp());
 }
 
