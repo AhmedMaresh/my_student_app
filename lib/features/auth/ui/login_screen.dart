@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_student_app/core/di/service_locator.dart';
 import 'package:my_student_app/core/helpers/extensions.dart';
 import 'package:my_student_app/core/helpers/snack_bar.dart';
 import 'package:my_student_app/core/helpers/spacing.dart';
 import 'package:my_student_app/core/helpers/validators.dart';
 import 'package:my_student_app/core/routing/routes.dart';
+import 'package:my_student_app/core/storage/token_storage.dart';
 import 'package:my_student_app/features/auth/data/models/login_request.dart';
 import 'package:my_student_app/features/auth/logic/cubit/login/login_cubit.dart';
 import 'package:my_student_app/features/auth/ui/widgets/auth_button.dart';
@@ -31,7 +33,10 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
         state.whenOrNull(
-          loginSuccess: (loginResponse) {
+          loginSuccess: (loginResponse) async {
+            await getIt<TokenStorage>().saveToken(loginResponse.token);
+            if (!context.mounted) return;
+
             emailController.clear();
             passwordController.clear();
             context.pushReplacementNamed(Routes.studentsScreen);

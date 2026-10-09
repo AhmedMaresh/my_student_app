@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:my_student_app/core/networking/api_services.dart';
 import 'package:my_student_app/core/networking/dio_factory.dart';
+import 'package:my_student_app/core/storage/token_storage.dart';
 import 'package:my_student_app/features/add_student/data/repos/add_student_repo.dart';
 import 'package:my_student_app/features/auth/data/repos/auth_repo.dart';
 import 'package:my_student_app/features/manage_student/data/repos/delete_student_repo.dart';
@@ -9,8 +10,10 @@ import 'package:my_student_app/features/update_student/data/repos/update_student
 
 final getIt = GetIt.instance;
 void setupGetIt() {
+  getIt.registerLazySingleton<TokenStorage>(() => TokenStorage());
+
   getIt.registerLazySingleton<ApiServices>(
-    () => ApiServices(DioFactory.getDio()),
+    () => ApiServices(DioFactory.getDio(getIt<TokenStorage>())),
   );
 
   getIt.registerLazySingleton<AuthRepo>(() => AuthRepo(getIt<ApiServices>()));
