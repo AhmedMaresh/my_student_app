@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:my_student_app/core/networking/api_constants.dart';
+import 'package:my_student_app/core/routing/app_navigator.dart';
 import 'package:my_student_app/core/storage/token_storage.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -40,6 +42,19 @@ class DioFactory {
           }
           return handler.next(options);
         },
+
+        onError: (error, handler) async {
+          final isUnauthorized = error.response?.statusCode == 401;
+          final isLoginRequest = error.requestOptions.path.endsWith(
+            ApiConstants.login,
+          );
+
+          if (isUnauthorized && !isLoginRequest) {
+            await tokenStorage.deleteToken();
+            AppNavigator.goToLogin();
+          }
+          return handler.next(error);
+        },
       ),
     );
 
@@ -47,7 +62,7 @@ class DioFactory {
       PrettyDioLogger(
         requestBody: false,
         requestHeader: false,
-        responseBody: true,
+        responseBody: false,
         responseHeader: false,
       ),
     );

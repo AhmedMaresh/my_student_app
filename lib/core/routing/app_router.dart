@@ -18,6 +18,7 @@ import 'package:my_student_app/features/manage_student/logic/cubit/student_cubit
 import 'package:my_student_app/features/manage_student/ui/student_details_screen.dart';
 import 'package:my_student_app/features/manage_student/ui/student_screen.dart';
 import 'package:my_student_app/features/settings/ui/settings_screen.dart';
+import 'package:my_student_app/features/splash/ui/splash_screen.dart';
 import 'package:my_student_app/features/update_student/data/repos/update_student_repo.dart';
 import 'package:my_student_app/features/update_student/logic/cubit/update_student_cubit.dart';
 
@@ -76,6 +77,9 @@ class AppRouter {
             child: const RegisterScreen(),
           ),
         );
+      // Splash Screen -----------------------------------------------
+      case Routes.splashScreen:
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
       default:
         return null;
     }
