@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_student_app/core/di/service_locator.dart';
+import 'package:my_student_app/core/routing/app_navigator.dart';
 import 'package:my_student_app/core/routing/app_router.dart';
 import 'package:my_student_app/core/routing/routes.dart';
 import 'package:my_student_app/core/themes/app_theme.dart';
@@ -27,8 +28,9 @@ class StudentApp extends StatelessWidget {
           builder: (context, themeMode) {
             print('Theme Mode: $themeMode');
             return MaterialApp(
+              navigatorKey: AppNavigator.navigatorKey,
               debugShowCheckedModeBanner: false,
-              initialRoute: Routes.loginScreen,
+              initialRoute: Routes.splashScreen,
               onGenerateRoute: AppRouter().generateRoute,
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,

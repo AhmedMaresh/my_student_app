@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_student_app/core/di/service_locator.dart';
 import 'package:my_student_app/core/helpers/extensions.dart';
 import 'package:my_student_app/core/helpers/spacing.dart';
 import 'package:my_student_app/core/routing/routes.dart';
+import 'package:my_student_app/core/storage/token_storage.dart';
 import 'package:my_student_app/core/themes/colors_manager.dart';
 import 'package:my_student_app/features/manage_student/logic/cubit/student_cubit/students_cubit.dart';
 import 'package:my_student_app/features/manage_student/ui/widgets/student_screen/drawer_item.dart';
@@ -40,6 +42,15 @@ class StudentsScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                   context.pushNamed(Routes.settingsScreen);
+                },
+              ),
+              DrawerItem(
+                title: 'Logout',
+                icon: Icons.logout,
+                onPressed: () async {
+                  await getIt<TokenStorage>().deleteToken();
+                  if (!context.mounted) return;
+                  context.pushReplacementNamed(Routes.loginScreen);
                 },
               ),
             ],
