@@ -24,7 +24,7 @@ class StudentInfo extends StatelessWidget {
         ),
         verticalSpace(16),
         Text(
-          student.name,
+          student.user.name,
           style: Styles.font28PrimaryBlueBold.copyWith(color: textColor),
         ),
         verticalSpace(8),
