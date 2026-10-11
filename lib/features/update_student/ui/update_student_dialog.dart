@@ -28,7 +28,7 @@ class _UpdateStudentDialogState extends State<UpdateStudentDialog> {
   void initState() {
     super.initState();
 
-    nameController = TextEditingController(text: widget.studentModel.name);
+    nameController = TextEditingController(text: widget.studentModel.user.name);
 
     ageController = TextEditingController(
       text: widget.studentModel.age.toString(),

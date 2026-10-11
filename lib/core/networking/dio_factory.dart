@@ -60,10 +60,10 @@ class DioFactory {
 
     dio?.interceptors.add(
       PrettyDioLogger(
-        requestBody: false,
-        requestHeader: false,
-        responseBody: false,
-        responseHeader: false,
+        requestBody: true,
+        requestHeader: true,
+        responseBody: true,
+        responseHeader: true,
       ),
     );
   }

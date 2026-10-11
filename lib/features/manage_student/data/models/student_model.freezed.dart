@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$StudentModel {
 
- int get id; String get name; int get age;
+ int get id; int get userId; int get age; int get level; UserModel get user;
 /// Create a copy of StudentModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $StudentModelCopyWith<StudentModel> get copyWith => _$StudentModelCopyWithImpl<S
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StudentModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.age, age) || other.age == age));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StudentModel&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.age, age) || other.age == age)&&(identical(other.level, level) || other.level == level)&&(identical(other.user, user) || other.user == user));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,age);
+int get hashCode => Object.hash(runtimeType,id,userId,age,level,user);
 
 @override
 String toString() {
-  return 'StudentModel(id: $id, name: $name, age: $age)';
+  return 'StudentModel(id: $id, userId: $userId, age: $age, level: $level, user: $user)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $StudentModelCopyWith<$Res>  {
   factory $StudentModelCopyWith(StudentModel value, $Res Function(StudentModel) _then) = _$StudentModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String name, int age
+ int id, int userId, int age, int level, UserModel user
 });
 
 
-
+$UserModelCopyWith<$Res> get user;
 
 }
 /// @nodoc
@@ -65,15 +65,26 @@ class _$StudentModelCopyWithImpl<$Res>
 
 /// Create a copy of StudentModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? age = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? userId = null,Object? age = null,Object? level = null,Object? user = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
-as int,
+as int,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as int,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
+as int,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as int,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserModel,
   ));
 }
-
+/// Create a copy of StudentModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserModelCopyWith<$Res> get user {
+  
+  return $UserModelCopyWith<$Res>(_self.user, (value) {
+    return _then(_self.copyWith(user: value));
+  });
+}
 }
 
 
@@ -155,10 +166,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  int age)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int userId,  int age,  int level,  UserModel user)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _StudentModel() when $default != null:
-return $default(_that.id,_that.name,_that.age);case _:
+return $default(_that.id,_that.userId,_that.age,_that.level,_that.user);case _:
   return orElse();
 
 }
@@ -176,10 +187,10 @@ return $default(_that.id,_that.name,_that.age);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  int age)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int userId,  int age,  int level,  UserModel user)  $default,) {final _that = this;
 switch (_that) {
 case _StudentModel():
-return $default(_that.id,_that.name,_that.age);case _:
+return $default(_that.id,_that.userId,_that.age,_that.level,_that.user);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +207,10 @@ return $default(_that.id,_that.name,_that.age);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  int age)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int userId,  int age,  int level,  UserModel user)?  $default,) {final _that = this;
 switch (_that) {
 case _StudentModel() when $default != null:
-return $default(_that.id,_that.name,_that.age);case _:
+return $default(_that.id,_that.userId,_that.age,_that.level,_that.user);case _:
   return null;
 
 }
@@ -211,12 +222,14 @@ return $default(_that.id,_that.name,_that.age);case _:
 @JsonSerializable()
 
 class _StudentModel implements StudentModel {
-  const _StudentModel({required this.id, required this.name, required this.age});
+  const _StudentModel({required this.id, required this.userId, required this.age, required this.level, required this.user});
   factory _StudentModel.fromJson(Map<String, dynamic> json) => _$StudentModelFromJson(json);
 
 @override final  int id;
-@override final  String name;
+@override final  int userId;
 @override final  int age;
+@override final  int level;
+@override final  UserModel user;
 
 /// Create a copy of StudentModel
 /// with the given fields replaced by the non-null parameter values.
@@ -231,16 +244,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StudentModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.age, age) || other.age == age));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StudentModel&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.age, age) || other.age == age)&&(identical(other.level, level) || other.level == level)&&(identical(other.user, user) || other.user == user));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,age);
+int get hashCode => Object.hash(runtimeType,id,userId,age,level,user);
 
 @override
 String toString() {
-  return 'StudentModel(id: $id, name: $name, age: $age)';
+  return 'StudentModel(id: $id, userId: $userId, age: $age, level: $level, user: $user)';
 }
 
 
@@ -251,11 +264,11 @@ abstract mixin class _$StudentModelCopyWith<$Res> implements $StudentModelCopyWi
   factory _$StudentModelCopyWith(_StudentModel value, $Res Function(_StudentModel) _then) = __$StudentModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String name, int age
+ int id, int userId, int age, int level, UserModel user
 });
 
 
-
+@override $UserModelCopyWith<$Res> get user;
 
 }
 /// @nodoc
@@ -268,16 +281,27 @@ class __$StudentModelCopyWithImpl<$Res>
 
 /// Create a copy of StudentModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? age = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? userId = null,Object? age = null,Object? level = null,Object? user = null,}) {
   return _then(_StudentModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
-as int,
+as int,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as int,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
+as int,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
+as int,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as UserModel,
   ));
 }
 
-
+/// Create a copy of StudentModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserModelCopyWith<$Res> get user {
+  
+  return $UserModelCopyWith<$Res>(_self.user, (value) {
+    return _then(_self.copyWith(user: value));
+  });
+}
 }
 
 // dart format on

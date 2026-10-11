@@ -103,7 +103,13 @@ class AddStudentBlocConsumer extends StatelessWidget {
 
                   final age = int.parse(ageText);
 
-                  final request = AddStudentRequest(name: name, age: age);
+                  final request = AddStudentRequest(
+                    name: name,
+                    age: age,
+                    email: '',
+                    password: '',
+                    level: 2,
+                  );
 
                   context.read<AddStudentCubit>().addStudent(request);
                 },

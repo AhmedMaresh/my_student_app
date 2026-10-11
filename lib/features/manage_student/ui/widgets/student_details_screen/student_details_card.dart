@@ -61,7 +61,7 @@ class StudentDetailsCard extends StatelessWidget {
               Divider(color: ColorsManager.primaryBlue),
               verticalSpace(5),
               Text(
-                'Name: ${student.name}',
+                'Name: ${student.user.name}',
                 style: TextStyle(fontSize: 16.sp, color: textColor),
               ),
               verticalSpace(8),

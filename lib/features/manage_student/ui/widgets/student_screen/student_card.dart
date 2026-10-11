@@ -92,7 +92,7 @@ class StudentCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          student.name,
+                          student.user.name,
                           style: TextStyle(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.bold,
@@ -133,7 +133,9 @@ class StudentCard extends StatelessWidget {
       builder: (dialogContext) {
         return AlertDialog(
           title: const Text('Delete Student'),
-          content: Text('Are you sure you want to delete ${student.name} ?'),
+          content: Text(
+            'Are you sure you want to delete ${student.user.name} ?',
+          ),
           actions: [
             TextButton(
               onPressed: () {
